@@ -1,0 +1,28 @@
+assets: 
+it should exist inside assets:
+character
+environment
+props, or props
+
+
+look:
+It should exist 1 look folder inside the project directory
+We dont have multiple look dev folders, and it should exist only 1 texture folder, under look.
+The texture folder has 3 categories, Character, props and environment. Each character has a name and a default folder, we have other foldesr  if  we have variants
+
+library folder is the only folder who those rules dont apply 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+look:

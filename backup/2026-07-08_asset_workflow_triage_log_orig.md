@@ -9,13 +9,18 @@ This log lists structural issues, bugs, and mismatches identified in the reposit
 *   **Misspelled / Incorrect Asset Roots**:
     *   The environment root directory is misspelled as `asset/enviroment` (should be `asset/environment`).
     *   The props root directory is singular and misspelled as `asset/prop` (should be `asset/props`).
-*   **Look & Texture Centralization Violations**:
-    *   **Missing Project-Wide Look Folder**: The repository lacks a single `look` folder at the root level of the project directory. The guideline states: "It should exist 1 look folder inside the project directory".
-    *   **Incorrect Texture Folder Location**: The main `texture` folder is located at the project root level rather than inside a root-level `look` folder (should be `look/texture`).
-    *   **Multiple Look Dev & Textures Folders**: There are multiple local look dev/textures folders scattered inside individual asset folders (e.g., `asset/character/menino/look` and local `textures` folders in `usd/assets/` assets), violating the rule: "We dont have multiple look dev folders, and it should exist only 1 texture folder, under look." (Note: The `library` folder is exempt).
-*   **Incorrect Centralized Texture Folder Structure**:
-    *   **Root Categories**: The `texture` folder has 32 subdirectories at its root level instead of exactly three category folders: `Character`, `props`, and `environment`.
-    *   **Character Texture Folders**: Under character textures (e.g., `texture/character/avo` and `texture/character/menino`), there are no `default` folders. Instead, they are organized directly into subfolders named `clothes`, `hair`, `skin`, `eyes`, `shirt`. The pipeline doc states: "Each character has a name and a default folder, we have other foldesr if we have variants."
+*   **Separated / Centralized Textures Folder**:
+    *   A root-level `texture/` folder exists with 32 subdirectories. According to the workflow guideline, textures should be local to each asset:
+        *   Characters: `asset/character/[character_name]/look/textures`
+        *   Environment: `asset/environment/look/textures`
+*   **Missing Standard Asset Structure**:
+    *   **Characters**:
+        *   `asset/character/grandma` contains raw geometry files (e.g., `grandma.mb`, `avo.usd`, `robes.obj`) scattered directly in its root. It completely lacks the expected `look/textures` structure.
+        *   `asset/character/menino` has a `texture` subdirectory instead of the plural `textures` under `look`.
+    *   **Environment**:
+        *   `asset/enviroment` contains subfolders `house`, `kitchen`, and `sets` instead of the expected `look/textures` and `materials` directories.
+    *   **Props**:
+        *   None of the 47 prop directories under `asset/prop` contain the required `models` subdirectory. Model files (e.g., `armario.fbx` under `asset/prop/armario`, `bag_backpack.fbx` under `asset/prop/bag`) are placed directly in the asset root folder.
 *   **Unsanctioned `asset/sets` Root**:
     *   An undocumented `asset/sets` folder exists under `asset`, containing scene layouts and scattered assets (e.g., `houses`, `kitchen`, `props`, `room`). This duplicates and bypasses the structure defined for `environment` and `props`.
 
@@ -30,7 +35,7 @@ This log lists structural issues, bugs, and mismatches identified in the reposit
     *   Duplicate/similar rig files exist in `asset/character/menino/pub/rig`:
         *   `menino_default_rig.ma`
         *   `menino_rig_default.ma`
-    *   **Non-Centralized Look/Texture Folders**: Local asset folders (e.g. `asset/character/menino/look/texture` and local folders under `usd/assets/`) duplicate or conflict with the centralized rule.
+    *   Splits/duplicates exist between the root `texture` folder and local asset folders (e.g., `texture/character/menino` vs. `asset/character/menino/look/texture`).
 *   **Language and Naming Inconsistencies**:
     *   **Portuguese / English Mix**:
         *   Character folder is named `grandma` but its primary USD file is named `avo.usd`.
