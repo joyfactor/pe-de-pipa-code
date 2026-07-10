@@ -214,3 +214,10 @@
 1. **Automated Triage Run**: Scanned workspace for structural and naming rules.
 2. **Log Updated**: Refreshed `asset_workflow_triage_log.md` with latest findings.
 3. **Backup Saved**: `code/backup/2026-07-10_asset_workflow_triage_log_run10.md`.
+
+
+### Run 11 — Automated schedule scan
+
+1. **Automated Triage Run**: Scanned workspace for structural and naming rules.
+2. **Log Updated**: Refreshed `asset_workflow_triage_log.md` with latest findings.
+3. **Backup Saved**: `code/backup/2026-07-10_asset_workflow_triage_log_run11.md`.
