@@ -1,7 +1,7 @@
 # Asset Workflow Triage Log
 
-Last inspected: 2026-07-10 20:06 (automated run) | Ref: `pipe doc.txt`
-Excluded from checks: `art`, `library`, `production`, `seq`, `story`, `usd`, `xgen`, `images`, `pub`, `props (until 7/10/2026) or july 10 of 2027`
+Last inspected: 2026-07-10 19:07 (automated run) | Ref: `pipe doc.txt`
+Excluded from checks: `art`, `library`, `production`, `seq`, `story`, `usd`, `xgen`, `images`, `pub`
 
 ---
 
@@ -24,6 +24,11 @@ Pipe doc: "flag wrong name convention"
 
 ### Look / Texture category naming
 *   `look/textures/character/` — casing mismatch: pipe doc says `Character` (capitalized).
+*   `look/textures/prop/` — should be `props` (plural) to match the pipe doc category name: "Character, props and environment".
+
+### Misplaced category folders inside `look/textures/prop/`
+*   `look/textures/prop/character/` — a nested `character` folder exists inside the `prop` category; these textures likely belong under `look/textures/character/`.
+*   `look/textures/prop/environment/` — a nested `environment` folder exists inside the `prop` category; these textures likely belong under `look/textures/environment/`.
 
 ### Character texture folders missing `default/`
 *   `asset/character/avo/look/textures/` — contains `clothes/`, `displacement/`, `hair/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
@@ -75,16 +80,71 @@ Pipe doc: "flag wrong name convention"
 *   Inconsistent asset prefix: `sam_eye_basecolor_v002.png`
 *   Inconsistent asset prefix: `sam_eye_sss.png`
 *   Inconsistent asset prefix: `sam_eye_ssscolor.png`
+*   Missing variant/lod fields: `bedsheets_bed_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `bedsheets_bed_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `bedsheets_bed_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `bedsheets_bed_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `bedsheets_bed_Roughness_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `bedsheets_ground_BaseColor_ACES - ACEScg.1001.exr`
 *   Missing variant/lod fields: `bedsheets_ground_Height_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `bedsheets_ground_Metalness_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `bedsheets_ground_Normal_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `bedsheets_ground_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `closet_closet_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `closet_closet_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `closet_closet_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `closet_closet_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `closet_closet_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `embroidery_Height_Utility - Raw_1001.exr`
+*   Missing variant/lod fields: `embroidery_Metallic_Utility - Raw_1001.exr`
+*   Missing variant/lod fields: `embroidery_Normal_Utility - Raw_1001.exr`
+*   Missing variant/lod fields: `embroidery_Opacity_Utility - Raw_1001.exr`
+*   Missing variant/lod fields: `embroidery_Roughness_Utility - Raw_1001.exr`
+*   Missing variant/lod fields: `globe_globe_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `globe_globe_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `globe_globe_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `globe_globe_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `globe_globe_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_ioio_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `ioio_ioio_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_ioio_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_ioio_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_ioio_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_rope_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `ioio_rope_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_rope_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_rope_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_rope_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_transparent_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `ioio_transparent_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_transparent_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_transparent_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `ioio_transparent_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `matress_matress_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `matress_matress_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `matress_matress_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `matress_matress_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `matress_matress_Roughness_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `menino_body_BaseColor_ACES - ACEScg.1001.exr`
 *   Missing variant/lod fields: `menino_body_Height_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `menino_body_Metalness_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `menino_body_Normal_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `menino_body_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `mountain base_mountain_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `mountain base_mountain_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `mountain base_mountain_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `mountain base_mountain_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `mountain base_mountain_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pillow_pillow_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `pillow_pillow_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pillow_pillow_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pillow_pillow_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pillow_pillow_Roughness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pote_pote_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `pote_pote_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pote_pote_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pote_pote_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `pote_pote_Roughness_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `skinexported0-DM1001.exr`
 *   Missing variant/lod fields: `skinexported0-DM1002.exr`
 *   Missing variant/lod fields: `skinexported0-DM1003.exr`
@@ -95,6 +155,8 @@ Pipe doc: "flag wrong name convention"
 *   Missing variant/lod fields: `skinexported0-DM1008.exr`
 *   Missing variant/lod fields: `skinexported0-DM1009.exr`
 *   Missing variant/lod fields: `skinexported0-DM1010.exr`
+*   Missing variant/lod fields: `terrain_color.exr`
+*   Missing variant/lod fields: `terrainbasecolor.exr`
 *   Missing variant/lod fields: `wall_wall_BaseColor_ACES - ACEScg.1001.exr`
 *   Missing variant/lod fields: `wall_wall_Height_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `wall_wall_Metalness_Utility - Raw.1001.exr`
@@ -108,19 +170,55 @@ Pipe doc: "flag wrong name convention"
 *   Missing variant/lod fields: `walls_Normal_Utility - Raw.1002.exr`
 *   Missing variant/lod fields: `walls_Roughness_Utility - Raw.1001.exr`
 *   Missing variant/lod fields: `walls_Roughness_Utility - Raw.1002.exr`
+*   Missing variant/lod fields: `window_window_BaseColor_ACES - ACEScg.1001.exr`
+*   Missing variant/lod fields: `window_window_Height_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `window_window_Metalness_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `window_window_Normal_Utility - Raw.1001.exr`
+*   Missing variant/lod fields: `window_window_Roughness_Utility - Raw.1001.exr`
 
 ---
 
 ## 3. Moderate — Structure & Consistency
 
 *   **Language mix (PT/EN)**: `grandma` vs `avo.usd`; prop pairs `cadeira`/`chair`, `pia`/`sink`, `plantas`/`plants`, `tapete`/`rug`.
+*   **`look/textures/prop/`** — 30 subdirs including stray `character/`, `environment/`, `set/`, `sets/`.
 
 ---
 
 ## 4. Minor — Hygiene
 
+### Stray files
+*   `lencol.fbx` loose at `asset/prop/` root
+*   `varal.fbx` loose at `asset/prop/` root
+
+### Cache/leftover files
+*   `set_Database_galery.db` in `look/textures/prop/set/houses/`
+
 ### Substance Painter project files in texture folders
+*   `bed.spp` in `asset/prop/cama/`
+*   `bedsheet.spp` in `asset/prop/cama/`
+*   `chair.spp` in `asset/prop/chair/`
+*   `closet.spp` in `asset/prop/closet/`
+*   `curtain.spp` in `asset/prop/table/default/`
+*   `door.spp` in `asset/prop/door/`
+*   `floor tile.spp` in `asset/prop/ground/`
+*   `fogao.spp` in `asset/prop/fogao/`
 *   `ground.spp` in `asset/environment/house/casa/`
+*   `ground.spp` in `asset/prop/casa/`
+*   `ioio.spp.lock` in `asset/prop/ioio/`
+*   `ioio.spp.painter_lock` in `asset/prop/ioio/`
+*   `ioio.spp` in `asset/prop/ioio/`
+*   `matress.spp` in `asset/prop/cama/`
+*   `mugs.spp` in `asset/prop/table/`
+*   `pillow.spp` in `asset/prop/cama/`
+*   `posters.spp` in `asset/prop/posters/`
+*   `pote.spp` in `asset/prop/pote/`
+*   `sink look.spp` in `asset/prop/sink/`
+*   `table cloth.spp` in `asset/prop/table/default/`
+*   `table.spp` in `asset/prop/table/default/`
+*   `tapete.spp` in `asset/prop/tapete/`
+*   `wal tile.spp` in `asset/prop/ground/`
+*   `wall.spp` in `asset/prop/wall/`
 *   `window_a.spp` in `asset/environment/sets/room/`
 
 ---

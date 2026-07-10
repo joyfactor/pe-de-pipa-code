@@ -99,8 +99,8 @@ def load_dynamic_rules():
                         exclude_this = True
                         dates = parse_dates_from_line(line)
                         if dates:
-                            min_date = min(dates)
-                            if datetime.now() >= min_date:
+                            max_date = max(dates)
+                            if datetime.now() >= max_date:
                                 exclude_this = False
                                 
                         if exclude_this:
