@@ -1,7 +1,7 @@
 # Asset Workflow Triage Log
 
 Last inspected: 2026-07-10 14:07 (automated run) | Ref: `pipe doc.txt`
-Excluded from checks: `art`, `library`, `production`, `seq`, `story`, `usd`, `xgen`, `images`, `pub`, `props (until 7/10/2026) or july 10 of 2027`
+Excluded from checks: `art`, `library`, `production`, `seq`, `story`, `usd`, `xgen`, `images`, `pub`, `art`, `library`, `production`, `seq`, `story`, `usd`, `xgen`, `images`, `pub`, `props (until 7/10/2026) or july 10 of 2027`
 
 ---
 

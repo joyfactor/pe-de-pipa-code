@@ -1,17 +1,116 @@
-assets: 
-it should exist inside assets:
-character
-environment
-props, or props
+asset pipeline: 
+
+
+folder that you dont need to check up -
+
+art
+library
+production
+seq
+story
+usd
+xgen
+images
+pub
+props (until 7/10/2026) or july 10 of 2027
+
+
+what we can by  pass: 
+empty folders, we can ignore them
+substance files on texture folders are the correct structure 
+
+- spaces and hypens are not a big Problem
+
+ XGen collections in wrong places are not a problem
+
+we can bypass all textures formats
+
+
+
+
+
+
+ASSET PIPELINE STRUCTURE
+7/09/2026 - MODIFIED AND DESIGNED BY BRENDON
+all folders from here needs to exist: 
+flag wrong name convention 
+
+asset
+ prop
+ environment
+
+character/
+└── menino/                             (character name example)
+
+    ├── model/
+    │   └── default/                    (character model work area)
+    │       ├── menino_default_model.ma
+    │       └── menino_default_model.mb
+    │
+    ├── look/
+    │   ├── work/                       (personal work area)
+    │   │   └── [artist_a]
+    │   │       - Houdini folders/files
+    │   │       - Maya files
+    │   │       - Maya workspace files
+    │   │       - OBJ
+    │   │       - FBX
+    │   │       - USD
+    │   │       - No naming convention required
+    │   │
+    │   ├── default/                    (character look development)
+    │   │   ├── menino_default_look.ma
+    │   │   ├── menino_default_look.mb
+    │   │   ├── menino_default_look_v001
+    │   │   └── menino_default_look_v002
+    │   │
+    │   └── textures/                   (work textures folder)
+    │       └── Naming Convention:
+    │           
+    │
+    ├── rig/
+    │   ├── work/                       (personal work area)
+    │   │   ├── artist_a/
+    │   │   └── artist_b/
+    │   │
+    │   │   Notes:
+    │   │   - Place rig tests here
+    │   │   - Clean received geometry
+    │   │   - Blendshapes
+    │   │   - Mesh edits
+    │   │   - Do NOT place test code here
+    │   │
+    │   ├── default/                    (character rig folder)
+    │   │   ├── menino_default_rig.ma
+    │   │   ├── menino_default_rig.mb
+    │   │   ├── menino_default_rig_v001
+    │   │   └── menino_default_rig_v002
+    │   │
+    │   └── rig_code_release_area/
+    │       ├── artist_a/
+    │       └── artist_b/
+    │
+    └── groom/
+        └── default/                    (groom development folder)
+            ├── xgen/                   (XGen folder)
+            ├── houdini/                (Houdini folder)
+            ├── cache/                  (FBX / ABC curves & geo caches)
+            ├── source_images/          (groom texture folder)
+            │
+            ├── menino_default_groom.ma
+            ├── menino_default_groom.mb
+            ├── menino_default_groom_v001
+            ├── menino_default_groom_v002
+            └── menino_default_groom_col.xgen
+
+
 
 
 look:
-It should exist 1 look folder inside the project directory
-We dont have multiple look dev folders, and it should exist only 1 texture folder, under look.
-The texture folder has 3 categories, Character, props and environment. Each character has a name and a default folder, we have other foldesr  if  we have variants
-
-library folder is the only folder who those rules dont apply 
-
+Its allowed to exist more them 1 look folder on the project 
+its allowed to have more them  1 texture folder, under main
+The texture folder has 3 categories, Character, props and environment.
+ Each character has a name and a default folder, we have other folders  if  we have variants
 
 
 
@@ -25,4 +124,7 @@ library folder is the only folder who those rules dont apply
 
 
 
-look:
+
+
+
+
