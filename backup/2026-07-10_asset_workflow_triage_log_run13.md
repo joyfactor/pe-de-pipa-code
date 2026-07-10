@@ -32,9 +32,11 @@ Pipe doc: "flag wrong name convention"
 
 ### Character texture folders missing `default/`
 *   `asset/character/avo/look/textures/` — contains `clothes/`, `displacement/`, `hair/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
+*   `asset/character/avo/look/textures/hair/Textures/` — contains `.mayaSwatches/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
 *   `asset/character/menino/look/textures/` — contains `clothes/`, `eyes/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
 *   `look/textures/Character/avo/` — contains `clothes/`, `displacement/`, `hair/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
 *   `look/textures/Character/menino/` — contains `eyes/`, `shirt/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
+*   `look/textures/character/avo/hair/Textures/` — contains `.mayaSwatches/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
 
 ### Texture files — wrong naming pattern
 *   Extra `mtlSG` segment: `menino_body_mtlSG_BaseColor_Utility - sRGB - Texture.1001.png.rat`

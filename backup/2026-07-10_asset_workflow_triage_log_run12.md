@@ -1,6 +1,6 @@
 # Asset Workflow Triage Log
 
-Last inspected: 2026-07-10 19:07 (automated run) | Ref: `pipe doc.txt`
+Last inspected: 2026-07-10 18:16 (automated run) | Ref: `pipe doc.txt`
 Excluded from checks: `art`, `library`, `production`, `seq`, `story`, `usd`, `xgen`, `images`, `pub`
 
 ---
@@ -31,10 +31,8 @@ Pipe doc: "flag wrong name convention"
 *   `look/textures/prop/environment/` — a nested `environment` folder exists inside the `prop` category; these textures likely belong under `look/textures/environment/`.
 
 ### Character texture folders missing `default/`
-*   `asset/character/avo/look/textures/` — contains `clothes/`, `displacement/`, `hair/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
-*   `asset/character/menino/look/textures/` — contains `clothes/`, `eyes/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
-*   `look/textures/Character/avo/` — contains `clothes/`, `displacement/`, `hair/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
-*   `look/textures/Character/menino/` — contains `eyes/`, `shirt/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
+*   `look/textures/character/avo/` — contains `clothes/`, `displacement/`, `hair/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
+*   `look/textures/character/menino/` — contains `eyes/`, `shirt/`, `skin/` but no `default/` folder. The pipe doc states: "Each character has a name and a default folder, we have other folders if we have variants."
 
 ### Texture files — wrong naming pattern
 *   Extra `mtlSG` segment: `menino_body_mtlSG_BaseColor_Utility - sRGB - Texture.1001.png.rat`

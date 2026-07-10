@@ -305,58 +305,85 @@ def scan_triage():
                                     )
 
     # ----------------------------------------------------
-    # 2. Centralized look/texture checks
+    # 2. Look and texture checks across the project
     # ----------------------------------------------------
-    if LOOK_DIR.exists():
-        for tex_dir in LOOK_DIR.iterdir():
-            if tex_dir.is_dir() and not is_excluded(tex_dir) and ("texture" in tex_dir.name.lower() or "textures" in tex_dir.name.lower()):
-                # Check categories
-                categories = [d.name for d in tex_dir.iterdir() if d.is_dir()]
-                
-                # Check category naming
-                for cat in categories:
-                    if cat.lower() == "character" and cat != "Character":
+    texture_dirs = []
+    for root, dirs, files in os.walk(ROOT_DIR):
+        root_path = Path(root)
+        if is_excluded(root_path):
+            continue
+        dirs[:] = [d for d in dirs if not is_excluded(root_path / d)]
+        for d in dirs:
+            if d.lower() in ["texture", "textures"]:
+                texture_dirs.append(root_path / d)
+
+    def check_character_texture_folder(folder_path: Path):
+        subdirs = [d.name for d in folder_path.iterdir() if d.is_dir()]
+        if "default" not in subdirs:
+            direct_dirs = ", ".join([f"`{d}/`" for d in subdirs])
+            naming_violations["missing_default_tex"].append(
+                f"`{clean_relative_path(folder_path)}/` — contains {direct_dirs} but no `default/` folder. The pipe doc states: \"Each character has a name and a default folder, we have other folders if we have variants.\""
+            )
+
+    for tex_dir in texture_dirs:
+        # Check if it is a centralized texture folder (i.e. not under asset/character, asset/prop, or asset/environment)
+        is_centralized = not any(p in tex_dir.parts for p in ["character", "prop", "environment"])
+        if is_centralized:
+            # Check categories
+            categories = [d.name for d in tex_dir.iterdir() if d.is_dir()]
+            
+            # Check category naming
+            for cat in categories:
+                if cat.lower() == "character" and cat != "Character":
+                    naming_violations["categories"].append(
+                        f"`{clean_relative_path(tex_dir / cat)}/` — casing mismatch: pipe doc says `Character` (capitalized)."
+                    )
+                elif cat.lower() in ["prop", "props"] and cat != "props":
+                    if not is_excluded(tex_dir / cat):
                         naming_violations["categories"].append(
-                            f"`{clean_relative_path(tex_dir / cat)}/` — casing mismatch: pipe doc says `Character` (capitalized)."
+                            f"`{clean_relative_path(tex_dir / cat)}/` — should be `props` (plural) to match the pipe doc category name: \"Character, props and environment\"."
                         )
-                    elif cat.lower() in ["prop", "props"] and cat != "props":
-                        if not is_excluded(tex_dir / cat):
-                            naming_violations["categories"].append(
-                                f"`{clean_relative_path(tex_dir / cat)}/` — should be `props` (plural) to match the pipe doc category name: \"Character, props and environment\"."
-                            )
-                    elif cat.lower() == "environment" and cat != "environment":
-                        naming_violations["categories"].append(
-                            f"`{clean_relative_path(tex_dir / cat)}/` — casing mismatch: pipe doc says `environment`."
+                elif cat.lower() == "environment" and cat != "environment":
+                    naming_violations["categories"].append(
+                        f"`{clean_relative_path(tex_dir / cat)}/` — casing mismatch: pipe doc says `environment`."
+                    )
+            
+            # Character textures under centralized
+            char_tex_dir = next((tex_dir / c for c in ["Character", "character", "Characters"] if (tex_dir / c).exists()), None)
+            if char_tex_dir and not is_excluded(char_tex_dir):
+                for char_folder in char_tex_dir.iterdir():
+                    if char_folder.is_dir() and not is_excluded(char_folder):
+                        check_character_texture_folder(char_folder)
+            
+            # Prop textures check under centralized
+            prop_tex_dir = next((tex_dir / name for name in ["prop", "props"] if (tex_dir / name).exists()), None)
+            if prop_tex_dir and not is_excluded(prop_tex_dir):
+                subdirs = [d.name for d in prop_tex_dir.iterdir() if d.is_dir()]
+                stray_subdirs = [d for d in subdirs if d in ["character", "environment", "set", "sets"]]
+                
+                misplaced_list = []
+                for sd in stray_subdirs:
+                    if sd in ["character", "environment"]:
+                        misplaced_list.append(
+                            f"`{clean_relative_path(prop_tex_dir / sd)}/` — a nested `{sd}` folder exists inside the `prop` category; these textures likely belong under `{clean_relative_path(tex_dir / sd)}/`."
                         )
+                naming_violations["misplaced"].extend(misplaced_list)
                 
-                # Character textures
-                char_tex_dir = tex_dir / "character"
-                if char_tex_dir.exists() and not is_excluded(char_tex_dir):
-                    for char_folder in char_tex_dir.iterdir():
-                        if char_folder.is_dir() and not is_excluded(char_folder):
-                            subdirs = [d.name for d in char_folder.iterdir() if d.is_dir()]
-                            if "default" not in subdirs:
-                                direct_dirs = ", ".join([f"`{d}/`" for d in subdirs])
-                                naming_violations["missing_default_tex"].append(
-                                    f"`{clean_relative_path(char_folder)}/` — contains {direct_dirs} but no `default/` folder. The pipe doc states: \"Each character has a name and a default folder, we have other folders if we have variants.\""
-                                )
-                
-                # Prop textures check
-                prop_tex_dir = next((tex_dir / name for name in ["prop", "props"] if (tex_dir / name).exists()), None)
-                if prop_tex_dir and not is_excluded(prop_tex_dir):
-                    subdirs = [d.name for d in prop_tex_dir.iterdir() if d.is_dir()]
-                    stray_subdirs = [d for d in subdirs if d in ["character", "environment", "set", "sets"]]
-                    
-                    misplaced_list = []
-                    for sd in stray_subdirs:
-                        if sd in ["character", "environment"]:
-                            misplaced_list.append(
-                                f"`{clean_relative_path(prop_tex_dir / sd)}/` — a nested `{sd}` folder exists inside the `prop` category; these textures likely belong under `{clean_relative_path(tex_dir / sd)}/`."
-                            )
-                    naming_violations["misplaced"] = misplaced_list
-                    
-                    if stray_subdirs or len(subdirs) >= 30:
-                        moderate.append(f"**`{clean_relative_path(prop_tex_dir)}/`** — {len(subdirs)} subdirs including stray {', '.join([f'`{d}/`' for d in stray_subdirs])}.")
+                if stray_subdirs or len(subdirs) >= 30:
+                    moderate.append(f"**`{clean_relative_path(prop_tex_dir)}/`** — {len(subdirs)} subdirs including stray {', '.join([f'`{d}/`' for d in stray_subdirs])}.")
+        else:
+            # Check if character local texture folder (e.g. asset/character/[name]/textures or asset/character/[name]/look/textures)
+            parts_lower = [p.lower() for p in tex_dir.parts]
+            if "character" in parts_lower:
+                try:
+                    idx = parts_lower.index("character")
+                    tex_dir_idx = len(tex_dir.parts) - 1
+                    if tex_dir_idx == idx + 2:
+                        check_character_texture_folder(tex_dir)
+                    elif tex_dir_idx == idx + 3 and parts_lower[idx + 2] == "look":
+                        check_character_texture_folder(tex_dir)
+                except ValueError:
+                    pass
 
     # ----------------------------------------------------
     # 3. Global walk to catch files and directories (naming, spacing, empty, cache, substance)
@@ -477,12 +504,12 @@ def scan_triage():
     
     if naming_violations["misplaced"]:
         output.append("### Misplaced category folders inside `look/textures/prop/`")
-        for mis_val in sorted(naming_violations["misplaced"]):
+        for mis_val in sorted(list(set(naming_violations["misplaced"]))):
             output.append(f"*   {mis_val}")
         output.append("")
         
     output.append("### Character texture folders missing `default/`")
-    for mis_val in sorted(naming_violations["missing_default_tex"]):
+    for mis_val in sorted(list(set(naming_violations["missing_default_tex"]))):
         output.append(f"*   {mis_val}")
     if not naming_violations["missing_default_tex"]:
         output.append("*   None")
